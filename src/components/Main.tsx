@@ -7,6 +7,7 @@ import { cn } from "../util/cn";
 import { TreeDirectory } from "./ChapterTree";
 import { treeData } from "../util/data";
 import { useCoursesStore } from "../store/useCoursesStore";
+import { KnowledgeGraph } from "./KnowledgeGraph";
 
 export function Main({ className = "" }: IclassName) {
   const currentMainWindow = useWindowStore((state) => state.currentMainWindow);
@@ -36,10 +37,11 @@ function CoursesWindow({ className = "" }: IclassName) {
       <aside
         className={cn(
           "transition-all bg-gray-50 border-r-1 border-gray-200 shadow-xl p-4",
-          "absolute h-full w-50 z-1",
+          "absolute h-full w-60 z-1",
           isAsideHidden && "-translate-x-full"
         )}
       >
+        <div className="font-bold text-lg mb-2 ml-2">课程列表</div>
         <TreeDirectory data={treeData} />
         <ExpandHideBtn
           toggleFunction={toggleAside}
@@ -48,7 +50,7 @@ function CoursesWindow({ className = "" }: IclassName) {
         />
       </aside>
       <main className="w-full p-8 single-center text-xl text-gray-500">
-        [{currentChapter?.label}]{currentChapter && "知识图谱"}
+        <KnowledgeGraph points={currentChapter?.knowledgePoints}/>
       </main>
     </div>
   );
