@@ -4,6 +4,7 @@ import { useWindowStore } from "../store/useWindowStore";
 import type { mainContent } from "../store/useWindowStore";
 import { Main } from "./Main";
 import { cn } from "../util/cn";
+import { NotesPanel } from "./NotesPanel";
 
 type navButtonType = {
   title: string;
@@ -15,12 +16,12 @@ export function Body({ className = "" }: IclassName) {
   return (
     <div
       className={cn(
-        "flex [&>*]:not-last:border-r-1 [&>*]:border-gray-700 [&>*]:h-full",
+        "flex [&>*]:not-last:border-r-2 [&>*]:border-gray-300 [&>*]:h-full",
         className
       )}
     >
       <aside className="flex flex-col w-21 z-2 bg-white">
-        <div className="flex flex-col items-center w-full p-4 border-b-1">
+        <div className="flex flex-col items-center w-full p-4 border-b-2 border-gray-300">
           <Icon
             icon="ic:round-account-circle"
             className="text-6xl text-gray-400 cursor-pointer"
@@ -32,7 +33,7 @@ export function Body({ className = "" }: IclassName) {
         <Nav className="mt-4 w-full" />
       </aside>
       <Main className="flex-1" />
-      <aside className="w-65"></aside>
+      <NotesPanel className="w-80"/>
     </div>
   );
 }

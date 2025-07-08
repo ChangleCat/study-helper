@@ -22,7 +22,7 @@ export function Header({ className = "" }: IclassName) {
   return (
     <header
       className={cn(
-        "h-16 flex justify-between border-b-1 border-gray-700 items-center",
+        "h-16 flex justify-between border-b-2 border-gray-300 items-center",
         className
       )}
     >

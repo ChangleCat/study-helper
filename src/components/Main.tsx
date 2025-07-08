@@ -1,7 +1,14 @@
 import type { IclassName } from "../util/className";
 import { useWindowStore } from "../store/useWindowStore";
 import type { mainContent } from "../store/useWindowStore";
-import { memo, useCallback, useState, type ReactNode } from "react";
+import {
+  memo,
+  useCallback,
+  useRef,
+  useState,
+  type MouseEventHandler,
+  type ReactNode,
+} from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { cn } from "../util/cn";
 import { TreeDirectory } from "./ChapterTree";
@@ -27,19 +34,32 @@ export function Main({ className = "" }: IclassName) {
 function CoursesWindow({ className = "" }: IclassName) {
   const [isAsideHidden, setAsideHidden] = useState<boolean>(false);
   const currentChapter = useCoursesStore((state) => state.selectedNode);
+  const setCurrentChapter = useCoursesStore((state) => state.setSelectedNode);
+  const sidebarRef = useRef<HTMLElement>(null);
 
   const toggleAside = useCallback(() => {
     setAsideHidden((prev) => !prev);
   }, []);
 
+  const cancelSelect = useCallback<MouseEventHandler>(
+    (event) => {
+      if (event.target === sidebarRef.current) {
+        setCurrentChapter(null);
+      }
+    },
+    [setCurrentChapter]
+  );
+
   return (
     <div className={cn("flex relative", className)}>
       <aside
         className={cn(
-          "transition-all bg-gray-50 border-r-1 border-gray-200 shadow-xl p-4",
+          "transition-all bg-gray-50 border-r-1 border-gray-300 shadow-xl p-4",
           "absolute h-full w-60 z-1",
           isAsideHidden && "-translate-x-full"
         )}
+        onClick={cancelSelect}
+        ref={sidebarRef}
       >
         <div className="font-bold text-lg mb-2 ml-2">课程列表</div>
         <TreeDirectory data={treeData} />
@@ -50,7 +70,7 @@ function CoursesWindow({ className = "" }: IclassName) {
         />
       </aside>
       <main className="w-full p-8 single-center text-xl text-gray-500">
-        <KnowledgeGraph points={currentChapter?.knowledgePoints}/>
+        <KnowledgeGraph points={currentChapter?.knowledgePoints} />
       </main>
     </div>
   );

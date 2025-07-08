@@ -10,7 +10,7 @@ function App() {
     <div
       className={cn(
         "w-full h-full flex flex-col bg-white overflow-hidden shadow-2xl transition-all",
-        (!isMax) && "h-160 w-270 rounded-xl border-2 border-gray-400"
+        (!isMax) && "h-160 w-270 rounded-xl border-2 border-gray-300"
       )}
     >
       <Header className="w-full" />
