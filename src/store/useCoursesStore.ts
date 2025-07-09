@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { type TreeNodeData } from "../util/data";
+import { type TreeNodeData, treeData } from "../util/data";
 
 interface coursesState {
   selectedNode: TreeNodeData | null;  // 当前被选中的节点
@@ -9,7 +9,7 @@ interface coursesState {
 }
 
 export const useCoursesStore = create<coursesState>((set) => ({
-  selectedNode: null,
+  selectedNode: treeData[0]?.children?.[0] ?? null,
   expandedNodeIDs: new Set(),
   setSelectedNode: (newNode) => set(() => ({ selectedNode: newNode })),
   setExpandedNodeIDs: (newNodes) => set(() => ({ expandedNodeIDs: newNodes }))

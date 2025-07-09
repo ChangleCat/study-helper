@@ -10,7 +10,7 @@ interface windowState {
 }
 
 export const useWindowStore = create<windowState>((set) => ({
-  isMax: false,
+  isMax: true,
   currentMainWindow: "courses",
   toggleMax: () => set((state) => ({ isMax: !state.isMax })),
   changeTo: (newContent) => set(() => ({ currentMainWindow: newContent }))

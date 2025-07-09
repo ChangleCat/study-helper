@@ -3,6 +3,7 @@ import { cn } from "../util/cn";
 import { type TreeNodeData } from "../util/data";
 import { useCoursesStore } from "../store/useCoursesStore";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useEffect } from "react";
 
 interface TreeNodeProps {
   node: TreeNodeData;
@@ -91,6 +92,13 @@ export function TreeDirectory({ data, className }: TreeDirectoryProps) {
       setExpandedNodeIDs(newExpandedNodes);
     }
   };
+
+  // 初始展示
+  useEffect(()=>{
+    const newExpandedNodes = new Set(expandedNodeIDs).add("1");
+    setExpandedNodeIDs(newExpandedNodes);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className={cn("flex flex-col items-stretch", className)}>
