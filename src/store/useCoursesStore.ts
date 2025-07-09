@@ -10,7 +10,7 @@ interface coursesState {
 
 export const useCoursesStore = create<coursesState>((set) => ({
   selectedNode: treeData[0]?.children?.[0] ?? null,
-  expandedNodeIDs: new Set(),
+  expandedNodeIDs: new Set<string>().add("1"),
   setSelectedNode: (newNode) => set(() => ({ selectedNode: newNode })),
   setExpandedNodeIDs: (newNodes) => set(() => ({ expandedNodeIDs: newNodes }))
 }))
