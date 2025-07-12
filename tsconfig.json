@@ -3,5 +3,15 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    // ... 其他已有的配置
+    "baseUrl": ".", // 1. 设置基准目录为项目根目录
+    "paths": {
+      "@/*": ["src/*"] // 2. 设置路径映射
+    }
+  },
+  "include": ["src"],
 }
