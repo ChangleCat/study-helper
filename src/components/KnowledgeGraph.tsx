@@ -17,12 +17,18 @@ const statusStyles = {
 
 // 单个知识点卡片
 function PointNode({ point }: { point: KnowledgePoint }) {
+  const setSelectedKnowledgePoint = useCoursesStore((state) => state.setSelectedKnowledgePoint);
+  const selectedKnowledgePoint = useCoursesStore((state) => state.selectedKnowledgePoint);
+  const isSelected = selectedKnowledgePoint?.id === point.id;
+
   return (
     <div
       className={cn(
         "p-4 rounded-lg border-2 shadow-sm cursor-pointer transition-all hover:shadow-md hover:-translate-y-1",
-        statusStyles[point.status]
+        statusStyles[point.status],
+        isSelected && "ring-2 ring-blue-500" // 选中时显示蓝色外圈
       )}
+      onClick={() => setSelectedKnowledgePoint(point)} // 点击时更新状态
     >
       <div className="font-semibold">{point.label}</div>
     </div>

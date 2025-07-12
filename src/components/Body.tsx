@@ -20,7 +20,7 @@ export function Body({ className = "" }: IclassName) {
         className
       )}
     >
-      <aside className="flex flex-col w-21 z-2 bg-white">
+      <aside className="flex flex-col w-21 z-10 bg-white">
         <div className="flex flex-col items-center w-full p-4 border-b-2 border-gray-300">
           <Icon
             icon="ic:round-account-circle"

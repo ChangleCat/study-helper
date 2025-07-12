@@ -15,6 +15,7 @@ import { TreeDirectory } from "./ChapterTree";
 import { treeData } from "../util/data";
 import { useCoursesStore } from "../store/useCoursesStore";
 import { KnowledgeGraph } from "./KnowledgeGraph";
+import { KnowledgePointDetail } from "./KnowledgePointDetail";
 
 export function Main({ className = "" }: IclassName) {
   const currentMainWindow = useWindowStore((state) => state.currentMainWindow);
@@ -54,8 +55,8 @@ function CoursesWindow({ className = "" }: IclassName) {
     <div className={cn("flex relative", className)}>
       <aside
         className={cn(
-          "transition-all bg-gray-50 border-r-1 border-gray-300 shadow-xl p-4",
-          "absolute h-full w-60 z-1",
+          "transition-all bg-gray-50 border-r-2 border-gray-300 shadow-xl p-4",
+          "absolute h-full w-60 z-1", 
           isAsideHidden && "-translate-x-full"
         )}
         onClick={cancelSelect}
@@ -69,8 +70,14 @@ function CoursesWindow({ className = "" }: IclassName) {
           className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full"
         />
       </aside>
-      <main className="w-full p-8 single-center text-xl text-gray-500">
-        <KnowledgeGraph points={currentChapter?.knowledgePoints} />
+      {/* 主内容区变为左右两栏 */}
+      <main className="w-full flex">
+        <div className="w-1/2 border-r-2 border-gray-300">
+          <KnowledgeGraph points={currentChapter?.knowledgePoints} />
+        </div>
+        <div className="w-1/2">
+          <KnowledgePointDetail />
+        </div>
       </main>
     </div>
   );
