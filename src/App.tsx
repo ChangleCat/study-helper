@@ -14,7 +14,7 @@ function App() {
       )}
     >
       <Header className="w-full" />
-      <Body className="flex-1 w-full" />
+      <Body className="flex-1 w-full h-0" />
     </div>
   );
 }
